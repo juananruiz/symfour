@@ -12,14 +12,14 @@ class ArticleController
      */
     public function homepage()
     {
-        return new Response("Oh my God!");
+        return new Response("Oh my God! Esta es la página inicial");
     }
 
     /**
-     * @Route("/news")
+     * @Route("/news/{slug}")
      */
-    public function news()
+    public function show($slug)
     {
-        return new Response("Oh my News!");
+        return new Response(sprintf('Futuro hogar del artículo: "%s"', $slug));
     }
 }
