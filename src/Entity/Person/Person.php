@@ -242,4 +242,3 @@ class Person implements UserInterface, \Serializable
             ) = unserialize($serialized);
     }
 }
-
