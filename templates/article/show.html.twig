@@ -1,1 +1,8 @@
-<h1>{{ titulo }}</h1>
+{% extends "lte_layout/main.html.twig" %}
+{% set active = 'noticias' %}
+{% set title = titulo %}
+{#{% set title = 'Prueba'|trans ~ ': ' ~ person.firstName ~ ' ' ~ person.lastName %}#}
+
+{% block content %}
+    <h1>{{ titulo }}</h1>
+{% endblock %}

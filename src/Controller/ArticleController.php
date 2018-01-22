@@ -13,7 +13,7 @@ class ArticleController extends AbstractController
      */
     public function homepage()
     {
-        return new Response("Oh my God! Esta es la página inicial");
+        return $this->render('lte_layout/lte_dashboard.html.twig');
     }
 
     /**
