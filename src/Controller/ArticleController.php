@@ -23,4 +23,12 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/show.html.twig', array('titulo' => $slug));
     }
+
+    /**
+     * @Route("/admin")
+     */
+    public function admin()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
+    }
 }
