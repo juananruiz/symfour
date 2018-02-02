@@ -1,0 +1,12 @@
+{% extends "lte_layout/main.html.twig" %}
+{% set active = 'persona' %}
+{% set title = 'Lista de personas' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<ul>
+{% for  persona in personas %}
+    <li>{{ persona.firstName ~ '  ' ~ persona.lastName}}</li>
+{% endfor %}
+</ul>
+{% endblock %}

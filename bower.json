@@ -2,7 +2,7 @@
   "name": "symfour",
   "version": "1.0.0",
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "latest",
     "tether": "latest",
     "jquery": "^3.0.0",

@@ -2,7 +2,7 @@
 
 namespace App\Entity\Person;
 
-use Doctrine\ORM;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -67,6 +67,7 @@ class Person implements UserInterface, \Serializable
         $this->email = $data['email'];
         $this->firstName = $data['firstName'];
         $this->lastName = $data['lastName'];
+        $this->password = $data['password'];
         $this->startDate = $data['startDate'];
     }
 

@@ -1,0 +1,8 @@
+{% extends "lte_layout/main.html.twig" %}
+{% set active = 'persona' %}
+{% set title = persona.firstName  %}
+{#{% set title = 'Prueba'|trans ~ ': ' ~ persona.firstName ~ ' ' ~ persona.lastName %}#}
+
+{% block content %}
+    <h1>{{ persona.firstName ~ ' ' ~ persona.lastName }}</h1>
+{% endblock %}
