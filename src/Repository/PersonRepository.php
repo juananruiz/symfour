@@ -5,8 +5,9 @@ namespace App\Repository;
 use App\Entity\Person\Person;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
-class PersonRepository extends ServiceEntityRepository
+class PersonRepository extends ServiceEntityRepository implements UserLoaderInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -44,4 +45,14 @@ class PersonRepository extends ServiceEntityRepository
         $this->getEntityManager()->persist($person);
         $this->getEntityManager()->flush();
     }
+
+    public function loadUserByUsername($email)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }

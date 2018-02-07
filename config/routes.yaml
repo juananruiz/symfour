@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\ArticleController::homepage
+
+#personas:
+#  path: /personas
+#  controller: App\Controller\PersonController::index

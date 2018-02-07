@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+//use http\Env\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +12,6 @@ use App\Repository\PersonRepository;
 
 class PersonController extends AbstractController
 {
-
     /**
      * @var PersonRepository
      */
@@ -27,9 +28,12 @@ class PersonController extends AbstractController
     /**
      * @Route("/personas", name="personas")
      */
-    public function index()
+    public function index(Request $request)
     {
         $personas = $this->repository->findAll();
+        $session = $request->getSession();
+        $this->addFlash('notice', 'Se ha desplegado la lista de usuarios');
+        dump($session);
 
         return $this->render('persona/index.html.twig', array('personas' => $personas));
     }
@@ -53,12 +57,12 @@ class PersonController extends AbstractController
         $data['email']= 'mafergo@us.es';
         $data['password']= 'pepepotamo';
         $data['startDate'] = new \DateTime();
-        $person = new Person($data);
+        $persona = new Person($data);
 
-        $em->persist($person);
+        $em->persist($persona);
         $em->flush();
 
-        return new Response('Saved new person with id '.$person->getId());
+        return new Response('Saved new person with id '.$persona->getId());
     }
 
     /**
@@ -74,6 +78,7 @@ class PersonController extends AbstractController
         $persona = new Person($data);
 
         $this->repository->save($persona);
+        $this->addFlash('notice', 'Se ha creado un nuevo usuario con id' . $persona->getId());
 
         return $this->render('persona/mostrar.html.twig', array('persona' => $persona));
     }

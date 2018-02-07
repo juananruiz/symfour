@@ -1,7 +1,16 @@
 security:
+    encoders:
+        App\Entity\Person\Person:
+            algorithm: bcrypt
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        mi_db_provider:
+            entity:
+                class: App\Entity\Person\Person
+                #property: email
         in_memory: { memory: ~ }
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -9,13 +18,18 @@ security:
         main:
             anonymous: ~
 
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            form_login:
+                login_path: login
+                check_path: login
+
+            provider: mi_db_provider
+
             # activate different ways to authenticate
             http_basic: ~
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
-            # https://symfony.com/doc/current/security/form_login_setup.html
-
     access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }
